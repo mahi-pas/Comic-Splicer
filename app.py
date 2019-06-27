@@ -25,7 +25,7 @@ class GUI:
             file_path = filedialog.askopenfilename()
             im = Image.open(file_path)
             im.save("input.png","PNG")
-            #self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
+            self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
 
         #Canvas
         self.input_image=ImageTk.PhotoImage(Image.open("input.png")) #Image input file
