@@ -28,10 +28,12 @@ class GUI:
             #self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
 
         #Canvas
+        self.input_image=ImageTk.PhotoImage(Image.open("input.png")) #Image input file
         self.image_view = Canvas(self.left_side, width=500, height=500)
         self.image_view.bind('<Button-1>', click) #Bind click function to canvas
-        #self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
+        self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
         self.image_view.pack()
+
         #image width and height input
         Label(self.right_side, text="Width").grid(row=0)
         Label(self.right_side, text="Height").grid(row=1)
