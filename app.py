@@ -24,7 +24,7 @@ class GUI:
         #Right frame, contains everything else
         self.right_side = Frame(root)
         self.right_side.pack(fill='both',expand='yes')
-        self.right_side.place(x=500,y=0)
+        self.right_side.place(x=250,y=0)
 
         #Canvas click event(gets file opener)
         def click(event):
@@ -36,7 +36,7 @@ class GUI:
 
         #Canvas
         self.input_image=ImageTk.PhotoImage(Image.open("input.png")) #Image input file
-        self.image_view = Canvas(self.left_side, width=500, height=500)
+        self.image_view = Canvas(self.left_side, width=250, height=500)
         self.image_view.bind('<Button-1>', click) #Bind click function to canvas
         self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
         self.image_view.pack()
@@ -71,6 +71,6 @@ class GUI:
 
 
 root = Tk()
-root.geometry("730x510") #GUI start size
+root.geometry("480x510") #GUI start size
 my_gui = GUI(root)
 root.mainloop()
