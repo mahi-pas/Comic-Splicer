@@ -5,6 +5,12 @@ from PIL import ImageTk,Image
 import glob, os
 
 
+pad = 6 #pushes down interacting UI
+
+#reload initial input image
+im = Image.open("res/input.png")
+im.save("input.png","PNG")
+
 class GUI:
     def __init__(self, master):
         self.master = master
@@ -25,6 +31,7 @@ class GUI:
             file_path = filedialog.askopenfilename()
             im = Image.open(file_path)
             im.save("input.png","PNG")
+            self.input_image=ImageTk.PhotoImage(Image.open("input.png"))
             self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
 
         #Canvas
@@ -35,22 +42,22 @@ class GUI:
         self.image_view.pack()
 
         #image width and height input
-        Label(self.right_side, text="Width").grid(row=0)
-        Label(self.right_side, text="Height").grid(row=1)
+        Label(self.right_side, text="Width").grid(row=0+pad)
+        Label(self.right_side, text="Height").grid(row=1+pad)
 
         self.width_input = Entry(self.right_side)
         self.height_input = Entry(self.right_side)
 
-        self.width_input.grid(row=0, column=1)
-        self.height_input.grid(row=1, column=1)
+        self.width_input.grid(row=0+pad, column=1)
+        self.height_input.grid(row=1+pad, column=1)
 
         #change output path button
         self.dir_button= Button(self.right_side, text="change output directory",command=self.dir_change)
-        self.dir_button.grid(row=2,column=1)
+        self.dir_button.grid(row=2+pad,column=1)
 
         #convert button
         self.splice_button = Button(self.right_side, text="Splice!", command=self.splice)
-        self.splice_button.grid(row=3, column=1)
+        self.splice_button.grid(row=3+pad, column=1)
 
 
 
