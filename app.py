@@ -13,6 +13,7 @@ im.save("input.png","PNG")
 
 class GUI:
     def __init__(self, master):
+        self.resize()
         self.master = master
         master.title("Easy Comic Splicer")
 
@@ -31,11 +32,12 @@ class GUI:
             file_path = filedialog.askopenfilename()
             im = Image.open(file_path)
             im.save("input.png","PNG")
-            self.input_image=ImageTk.PhotoImage(Image.open("input.png"))
+            self.resize()
+            self.input_image=ImageTk.PhotoImage(Image.open("thumbnail.png"))
             self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
 
         #Canvas
-        self.input_image=ImageTk.PhotoImage(Image.open("input.png")) #Image input file
+        self.input_image=ImageTk.PhotoImage(Image.open("thumbnail.png")) #Image input file
         self.image_view = Canvas(self.left_side, width=250, height=500)
         self.image_view.bind('<Button-1>', click) #Bind click function to canvas
         self.image = self.image_view.create_image(0, 0, anchor=NW, image=self.input_image)
@@ -68,6 +70,13 @@ class GUI:
     #func for output path button
     def dir_change(self):
         print("dir change")
+
+    #resize function
+    def resize(self):
+        size= 250,500
+        im = Image.open("input.png")
+        im.thumbnail(size)
+        im.save("thumbnail.png", "PNG")
 
 
 root = Tk()
