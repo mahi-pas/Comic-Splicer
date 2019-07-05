@@ -3,6 +3,7 @@ from tkinter import scrolledtext
 from tkinter import filedialog
 from PIL import ImageTk,Image
 import glob, os
+from pathlib import Path
 
 
 pad = 6 #pushes down interacting UI
@@ -30,6 +31,8 @@ class GUI:
         #Canvas click event(gets file opener)
         def click(event):
             file_path = filedialog.askopenfilename()
+            #makes name for output folder
+            self.file_name = Path(file_path).stem
             im = Image.open(file_path)
             im.save("input.png","PNG")
             self.resize()
@@ -53,7 +56,7 @@ class GUI:
         #default values
         self.width_input.insert(0,"800")
         self.height_input.insert(0,"1280")
-
+        #places buttons
         self.width_input.grid(row=0+pad, column=1)
         self.height_input.grid(row=1+pad, column=1)
 
@@ -62,13 +65,20 @@ class GUI:
         self.splice_button = Button(self.right_side, text="Splice!", command=self.splice)
         self.splice_button.grid(row=2+pad, column=1)
 
+        #default name
+        self.file_name = "comic"
+
 
 
     #fuction for convert button
     def splice(self):
         print("splice")
         #get output dir
-        output_path = filedialog.askdirectory()
+        output_path = Path(filedialog.askdirectory())
+        im=Image.open("input.png")
+        os.mkdir(output_path/self.file_name)
+        im.save(output_path / self.file_name / "1.png","PNG")
+
 
     #resize function
     def resize(self):
