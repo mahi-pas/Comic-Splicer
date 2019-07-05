@@ -57,23 +57,18 @@ class GUI:
         self.width_input.grid(row=0+pad, column=1)
         self.height_input.grid(row=1+pad, column=1)
 
-        #change output path button
-        self.dir_button= Button(self.right_side, text="change output directory",command=self.dir_change)
-        self.dir_button.grid(row=2+pad,column=1)
 
         #convert button
         self.splice_button = Button(self.right_side, text="Splice!", command=self.splice)
-        self.splice_button.grid(row=3+pad, column=1)
+        self.splice_button.grid(row=2+pad, column=1)
 
 
 
     #fuction for convert button
     def splice(self):
         print("splice")
-    
-    #func for output path button
-    def dir_change(self):
-        print("dir change")
+        #get output dir
+        output_path = filedialog.askdirectory()
 
     #resize function
     def resize(self):
@@ -84,6 +79,6 @@ class GUI:
 
 
 root = Tk()
-root.geometry("480x510") #GUI start size
+root.geometry("465x510") #GUI start size
 my_gui = GUI(root)
 root.mainloop()
