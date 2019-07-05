@@ -59,7 +59,12 @@ class GUI:
         #places buttons
         self.width_input.grid(row=0+pad, column=1)
         self.height_input.grid(row=1+pad, column=1)
-
+        '''
+        #default output format
+        self.out_format = StringVar(root)
+        self.out_choices={"png","jpg"}
+        self.out_format.set("png")
+        '''
 
         #convert button
         self.splice_button = Button(self.right_side, text="Splice!", command=self.splice)
@@ -68,15 +73,21 @@ class GUI:
         #default name
         self.file_name = "comic"
 
-
-
     #fuction for convert button
     def splice(self):
+        self.im_width=800
+        self.im_height=1280
         print("splice")
         #get output dir
         output_path = Path(filedialog.askdirectory())
         im=Image.open("input.png")
         os.mkdir(output_path/self.file_name)
+        #splicing and saving
+        #change width
+        self.cur_wid, self.cur_hei = im.size
+        im.thumbnail(self.im_width,(self.cur_hei*(self.cur_wid/self.im_width)))
+        #crop
+        im.crop(0,0,self.im_width,self.im_height)
         im.save(output_path / self.file_name / "1.png","PNG")
 
 
