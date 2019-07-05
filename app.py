@@ -47,8 +47,12 @@ class GUI:
         Label(self.right_side, text="Width").grid(row=0+pad)
         Label(self.right_side, text="Height").grid(row=1+pad)
 
+        #entry box
         self.width_input = Entry(self.right_side)
         self.height_input = Entry(self.right_side)
+        #default values
+        self.width_input.insert(0,"800")
+        self.height_input.insert(0,"1280")
 
         self.width_input.grid(row=0+pad, column=1)
         self.height_input.grid(row=1+pad, column=1)
